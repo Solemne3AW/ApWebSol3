@@ -20,7 +20,7 @@ Este proyecto es una aplicación web sencilla construida con Django, como parte 
     git clone https://github.com/Solemne3AW/ApWebSol3.git
     cd ApWebSol3
     ```
-2.  **Crear un entorno virtual**
+2.  **Crear un entorno virtual (opcional)** 
     ```bash
     python -m venv venv
     source venv/bin/activate  # En Windows: venv\Scripts\activate
