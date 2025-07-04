@@ -1,0 +1,21 @@
+# Python y Django
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env/
+
+# Base de datos local
+db.sqlite3
+
+# Archivos de entorno y logs
+.env
+.env.local
+*.log
+
+# Directorios de Django
+media/
+staticfiles/
