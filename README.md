@@ -80,3 +80,13 @@ Este proyecto es una aplicación web sencilla construida con Django, como parte 
     ```bash
     docker-compose down
     ```
+---
+
+## 📅 Lógica de Negocio para Citas
+
+El sistema de gestión de citas médicas incluye las siguientes validaciones y reglas de negocio para asegurar la integridad y coherencia de las citas:
+
+*   **No Superposición de Citas:** Un médico no puede tener dos citas agendadas a la misma hora el mismo día. Si se intenta crear o actualizar una cita que se superpone con una existente para el mismo médico, el sistema lo impedirá.
+*   **Duración Mínima de la Cita:** Cada cita debe tener una duración mínima de 15 minutos.
+*   **No Agendar en el Pasado:** No es posible agendar citas en fechas y horas que ya han transcurrido.
+*   **Hora de Fin Posterior a la Hora de Inicio:** La hora de finalización de una cita debe ser siempre posterior a su hora de inicio.
