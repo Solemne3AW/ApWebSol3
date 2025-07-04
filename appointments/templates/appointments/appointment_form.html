@@ -1,0 +1,36 @@
+<h1>{% if form.instance.pk %}Editar Cita{% else %}Agendar Nueva Cita{% endif %}</h1>
+
+<form method="post" class="container my-5">
+    {% csrf_token %}
+    
+    {% for field in form %}
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+            <div class="col-sm-9">
+                {{ field }}
+                {% if field.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ field.errors.0 }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger mb-4">
+            {% for error in form.non_field_errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+    <div class="row">
+        <div class="col-sm-9 offset-sm-3">
+            <button type="submit" class="btn btn-primary me-2">Guardar</button>
+            <a href="{% url 'appointments:appointment_list' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </div>
+</form>
+
+<a href="{% url 'appointments:appointment_list' %}">Volver a la lista de citas</a>

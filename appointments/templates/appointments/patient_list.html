@@ -1,0 +1,8 @@
+<h1>Lista de Pacientes</h1>
+<ul>
+    {% for patient in patients %}
+        <li><a href="{% url 'appointments:patient_detail' patient.pk %}">{{ patient.first_name }} {{ patient.last_name }}</a></li>
+    {% empty %}
+        <li>No hay pacientes registrados.</li>
+    {% endfor %}
+</ul>

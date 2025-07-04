@@ -1,0 +1,36 @@
+<h1>Lista de Citas</h1>
+<a href="{% url 'appointments:appointment_create' %}">Agendar Nueva Cita</a>
+
+<form method="GET" action="{% url 'appointments:appointment_list' %}">
+    <label for="status">Filtrar por Estado:</label>
+    <select name="status" id="status">
+        <option value="">Todos</option>
+        {% for choice_value, choice_label in statuses %}
+            <option value="{{ choice_value }}" {% if request.GET.status == choice_value %}selected{% endif %}>{{ choice_label }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="doctor">Filtrar por Médico:</label>
+    <select name="doctor" id="doctor">
+        <option value="">Todos</option>
+        {% for doctor in doctors %} {# Necesitarías pasar 'doctors' al contexto de la vista #}
+            <option value="{{ doctor.pk }}" {% if request.GET.doctor|stringformat:"s" == doctor.pk|stringformat:"s" %}selected{% endif %}>Dr. {{ doctor.first_name }} {{ doctor.last_name }}</option>
+        {% endfor %}
+    </select>
+    
+    <label for="date">Filtrar por Fecha (YYYY-MM-DD):</label>
+    <input type="date" name="date" id="date" value="{{ request.GET.date }}">
+    <button type="submit">Filtrar</button>
+</form>
+
+<ul>
+    {% for appointment in appointments %}
+        <li>
+            Cita de {{ appointment.patient }} con {{ appointment.doctor }} el {{ appointment.start_time|date:"Y-m-d H:i" }} - Estado: {{ appointment.get_status_display }}
+            <a href="{% url 'appointments:appointment_update' appointment.pk %}">Editar</a>
+            <a href="{% url 'appointments:appointment_delete' appointment.pk %}">Eliminar</a>
+        </li>
+    {% empty %}
+        <li>No hay citas agendadas.</li>
+    {% endfor %}
+</ul>

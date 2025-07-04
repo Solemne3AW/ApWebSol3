@@ -1,0 +1,7 @@
+<h1>Confirmar Eliminación</h1>
+<p>¿Estás seguro de que quieres eliminar la cita de {{ appointment.patient }} con {{ appointment.doctor }} el {{ appointment.start_time|date:"Y-m-d H:i" }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, Eliminar</button>
+    <a href="{% url 'appointments:appointment_list' %}">Cancelar</a>
+</form>

@@ -1,0 +1,6 @@
+<h1>Detalle del Paciente: {{ patient.first_name }} {{ patient.last_name }}</h1>
+<p>Email: {{ patient.email }}</p>
+<p>Teléfono: {{ patient.phone_number }}</p>
+<p>Fecha de Nacimiento: {{ patient.date_of_birth }}</p>
+<p>Dirección: {{ patient.address }}</p>
+<a href="{% url 'appointments:patient_list' %}">Volver a la lista de pacientes</a>
